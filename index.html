@@ -4,30 +4,30 @@
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+  <link href="node_modules/jsoneditor/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
+  <script src="node_modules/jsoneditor/dist/jsoneditor.js"></script>
 </head>
 
 <body>
-  <div id="curtain" class="Curtain">
-    <a id="login-button" class="btn btn-primary btn-lg btn-login btn-block">Login</a>
-  </div>
-  <div class="Editor">
-    <div class="TopView">
-      <div id="chunk-list" class="ChunkList Panel">
-        <chunk-listing v-for="item in chunks" v-bind:chunk="item" v-bind:key="item.id" />
+  <div id="admin-app">
+    <div id="curtain" class="Curtain">
+      <a id="login-button" class="btn btn-primary btn-lg btn-login btn-block">Login</a>
+    </div>
+    <div class="Editor">
+      <div class="TopView">
+        <div class="ChunkList Panel">
+          <chunk-listing v-for="item in chunks" v-bind:chunk="item" v-bind:key="item.id" v-on:click.native="selectChunk(item.text)" />
+        </div>
+        <div id="json-editor" class="JsonDisplay Panel"></div>
+        </div>
       </div>
-      <div class="JsonDisplay Panel">
-        <textarea>
-        This is a text area that will eventually contain some json.
-      </textarea>
+      <div class="CommandEditor Panel">
       </div>
     </div>
-    <div id="app" class="CommandEditor Panel">
-      {{ message }}
-    </div>
   </div>
+  <script src="scripts/adminApp.js"></script>
   <script src="scripts/login.js"></script>
-  <script src="scripts/chunkList.js"></script>
   <script src="scripts/comsock.js"></script>
 </body>
 

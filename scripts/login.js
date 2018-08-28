@@ -66,3 +66,8 @@ function getIdToken() {
 function getState() {
   return getParameterByName('state');
 }
+
+function resetAuthToken() {
+  window.localStorage.removeItem("access-token");
+  window.location.reload(true);
+}
